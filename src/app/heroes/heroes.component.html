@@ -3,10 +3,11 @@
 	<li *ngFor="let hero of heroes">
 	  <a routerLink="/detail/{{hero.id}}">
 		<span class="badge">{{hero.id}}</span> {{hero.name}}
-	  </a>
+		</a> 
+		<button class="delete" title="delete hero"
+		(click)="delete(hero)">x</button>
 	</li>
   </ul>
-
 <div *ngIf="selectedHero">
 <h2>{{selectedHero.name | uppercase }}</h2>
         <div><span>id: </span>{{selectedHero.id}}</div>
@@ -15,4 +16,13 @@
 			<input [(ngModel)]="selectedHero.name" placeholder="name">
 		</label>
 	</div>
+</div>
+<div>
+  <label>Hero name:
+    <input #heroName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(heroName.value); heroName.value=''">
+    add
+  </button>
 </div>
